@@ -5,10 +5,22 @@ using System.Threading.Tasks;
 
 namespace FPCheckCom
 {
-    [ComVisible(true)]
+    [ComVisible(true), Guid("7227E1E2-03AB-4B5C-8D5D-C00A39620F6B")]
+    public interface IFPVerify
+    {
+        [DispId(1)]
+        IntPtr Connect();
+        IntPtr ConnectByStr(String constr);
+        int DisConnect();
+        int Verify(int userID);
+        int FreeScan();
+        int GetStatus();
+    }
+
+
+    [ComVisible(true), Guid("F32F4471-A004-4C75-9964-84854BC199E7")]
     [ClassInterface(ClassInterfaceType.AutoDual)]
-    [Guid("F32F4471-A004-4C75-9964-84854BC199E7")]
-    public class VerifyClass
+    public class VerifyClass:IFPVerify
     {
         IntPtr m_hDevice = IntPtr.Zero;
 
